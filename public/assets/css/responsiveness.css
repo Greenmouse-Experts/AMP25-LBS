@@ -1,0 +1,16 @@
+@media (max-width: 991px){
+    .hero{
+        text-align: center;
+        margin-bottom: 50px;
+    }
+    .hero p{
+        margin: auto;
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 970px){
+    .recover_psw{
+        margin-top: 90px !important;
+    }
+}
