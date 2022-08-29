@@ -21,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','verified']);
+        $this->middleware(['auth']);
     }
 
     /**
@@ -31,7 +31,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('member.home');
+        $personal_notifications = Notification::latest()->where('to', Auth::user()->id)->take(5)->get();
+        $general_notifications = Notification::latest()->where('to', 'Members')->take(5)->get();
+        $donation_dues = DonationDue::get();
+        $paid_donation_dues = Payment::where('membership_id', Auth::user()->membership_id )->get();
+
+        return view('member.home', [
+            'paid_donation_dues' => $paid_donation_dues,
+            'donation_dues' => $donation_dues,
+            'personal_notifications' => $personal_notifications,
+            'general_notifications' => $general_notifications
+        ]);
     }
 
     public function profile()
@@ -130,6 +140,14 @@ class HomeController extends Controller
 
     public function make_payment($id, Request $request) 
     {
+        if(Auth::user()->email == null)
+        {
+            return back()->with([
+                'type' => 'danger',
+                'message' => 'Please update your Profile Email and try again!'
+            ]); 
+        }
+
         $Finder = Crypt::decrypt($id);
 
         $donation_dues = DonationDue::findorfail($Finder);
@@ -138,7 +156,7 @@ class HomeController extends Controller
 
         if ($payments->isEmpty()) 
         {
-            $SECRET_KEY = config('app.paystack_secret_key');;
+            $SECRET_KEY = config('app.paystack_secret_key');
 
             $url = "https://api.paystack.co/transaction/initialize";
 
@@ -150,11 +168,12 @@ class HomeController extends Controller
                     'donation_due_id' => $donation_dues->id,
                     'donation_due_title' => $donation_dues->title,
                     'membership_id' => Auth::user()->membership_id,
-                    'name' => Auth::user()->first_name. ' ' .Auth::user()->second_name
+                    'name' => Auth::user()->name
                 ]
             ];
 
             $fields_string = http_build_query($fields);
+
             //open connection
             $ch = curl_init();
             
@@ -199,7 +218,7 @@ class HomeController extends Controller
                     'message' => 'Payment has been made!'
                 ]);
             } else {
-                $SECRET_KEY = config('app.paystack_secret_key');;
+                $SECRET_KEY = config('app.paystack_secret_key');
 
                 $url = "https://api.paystack.co/transaction/initialize";
 
@@ -211,7 +230,7 @@ class HomeController extends Controller
                         'donation_due_id' => $donation_dues->id,
                         'donation_due_title' => $donation_dues->title,
                         'membership_id' => Auth::user()->membership_id,
-                        'name' => Auth::user()->first_name. ' ' .Auth::user()->second_name
+                        'name' => Auth::user()->name
                     ]
                 ];
 
@@ -296,7 +315,7 @@ class HomeController extends Controller
                 'donation_due_title' => $result->data->metadata->donation_due_title,
                 'membership_id' => $result->data->metadata->membership_id,
                 'name' => $result->data->metadata->name,
-                'email' => $result->data->customer->email,
+                // 'email' => $result->data->customer->email,
                 'amount' => ($result->data->amount / 100),
                 'transaction_id' => $result->data->id,
                 'ref_id' => $result->data->reference,
@@ -330,7 +349,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function read_message($id) { 
+    public function read_message($id) 
+    { 
         $notification_id = Crypt::decrypt($id);
 
         $notification = Notification::findorfail($notification_id);

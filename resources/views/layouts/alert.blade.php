@@ -16,7 +16,7 @@
         <!-- <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close">
             <span><i class="mdi mdi-close"></i></span>
         </button> -->
-        <strong>Success!</strong> {{session()->get('message')}}
+        <strong></strong> {{session()->get('message')}}
     </div>
 </div>
 @endif

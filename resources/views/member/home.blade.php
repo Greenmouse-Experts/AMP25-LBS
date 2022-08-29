@@ -33,8 +33,8 @@
                     <div class="card-body">
                         <div class="media align-items-center">
                             <div class="media-body mr-3">
-                                <h2 class="text-black font-w700">100</h2>
-                                <p class="mb-0 text-black font-w600">Total Notifications</p>
+                                <h2 class="text-black font-w700">{{$paid_donation_dues->count()}}</h2>
+                                <p class="mb-0 text-black font-w600">Total Donations/Dues Paid</p>
                             </div>
                             <div class="d-inline-block">
                                 <svg class="primary-icon" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +50,7 @@
                     <div class="card-body">
                         <div class="media align-items-center">
                             <div class="media-body mr-3">
-                                <h2 class="text-black font-w700">10</h2>
+                                <h2 class="text-black font-w700">{{$donation_dues->count()}}</h2>
                                 <p class="mb-0 text-black font-w600">Total Donations/Dues</p>
                             </div>
                             <div class="d-inline-block">
@@ -64,29 +64,71 @@
             </div>
         </div>
         <div class="row">
-            <div class="card-header border-0 pb-3 ">
-                <div class="mr-auto pr-3">
-                    <h4 class="text-black font-w700 fs-24">General Notifications/Messages</h4>
-                </div>
-            </div>
-            <div class="col-xl-12">
-                <div class="table-responsive ">
-                    <table class="table table-responsive-lg mb-4 dataTablesCard card-table text-black" id="example5">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone Number</th>
-                                <th>Marital Status</th>
-                                <th>Service</th>
-                                <th>Date Submitted</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                    </table>
-                </div>
-            </div>
+        <div class="col-lg-6">
+                            <div class="card card-statistics">
+                                <div class="card-header">
+                                    <div class="card-heading">
+                                        <h4 class="card-title">Personnal Notifications/Messages</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    @if($personal_notifications->isEmpty())
+                                    <div class="image" style="padding: 1rem; margin-bottom: 1rem;">
+                                        <img src="{{URL::asset('dash/images/dot.png')}}" alt="">
+                                        <span>
+                                            No Message/Notification
+                                        </span>
+                                    </div>
+                                    @else
+                                    @foreach($personal_notifications as $key => $personal_notification)
+                                    <div class="image" style="background: #e9e3e35e; padding: 1rem; margin-bottom: 1rem;">
+                                        <img src="{{URL::asset('dash/images/dot.png')}}" alt="">
+                                        <span>{{$personal_notification->created_at->diffForHumans()}}</span> - {{$personal_notification->from}}
+                                        <p style="font-weight: 500;">{{$personal_notification->subject}}</p> 
+                                    </div>
+                                    @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card card-statistics">
+                                <div class="card-header">
+                                    <div class="card-heading">
+                                        <h4 class="card-title">General Notifications/Messages</h4>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    @if($general_notifications->isEmpty())
+                                    <div class="imagee" style="padding: 1rem; margin-bottom: 1rem;">
+                                        <img src="{{URL::asset('dash/images/avatar/1.png')}}" alt="">
+                                        <span>
+                                            No Message/Notification
+                                        </span>
+                                    </div>
+                                    @else
+                                    @foreach($general_notifications as $key => $general_notification)
+                                    @if($general_notification->status == 'Read')
+                                    <div class="imagee" style="padding: 1rem; margin-bottom: 1rem;">
+                                        <img src="{{URL::asset('dash/images/avatar/1.png')}}" alt="">
+                                        <span>{{$general_notification->created_at->diffForHumans()}}</span> - {{$general_notification->from}}
+                                        <p style="font-weight: 500;">{{$general_notification->subject}}</p> 
+                                        <p>
+                                            {{$general_notification->message}}
+                                        </p>
+                                    </div>
+                                    @else
+                                    <div class="imagee" style="background: #e9e3e35e; padding: 1rem; margin-bottom: 1rem;">
+                                        <img src="{{URL::asset('dash/images/avatar/1.png')}}" alt="">
+                                        <span>{{$general_notification->created_at->diffForHumans()}}</span> - {{$general_notification->from}}
+                                        <p style="font-weight: 500;">{{$general_notification->subject}} </p> 
+                                    </div>
+                                    @endif
+                                    @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
         </div>
     </div>
 </div>

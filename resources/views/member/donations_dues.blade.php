@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="table-responsive ">
-                                <table class="table table-responsive-lg mb-4 dataTablesCard card-table text-black" id="example5">
+                                <table class="table display compact table table-striped table-bordered mb-4 text-black" id="example5">
                                     <thead>
                                         <tr>
                                             <th>S/N</th>
@@ -58,6 +58,7 @@
                                             <td>{{$donation_due->created_at->diffForHumans()}}</td>
                                             <td>
                                                 <div class="d-flex">
+                                                    <!-- <form method="POST" action=""> -->
                                                     <form method="POST" action="{{ route('payment', Crypt::encrypt($donation_due->id)) }}">
                                                         @csrf
                                                         <button type="submit" class="btn btn-primary btn-round btn-xs" style="cursor: pointer">Make Payment</button>
@@ -70,26 +71,6 @@
                                     @endif
                                 </table>
                             </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <nav aria-label="Page navigation example ">
-                                <ul class="pagination pagination-circle mt-3">
-                                    <li class="page-item page-indicator">
-                                        <a class="page-link" href="javascript:void(0)">
-                                            <i class="la la-angle-left"></i></a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                                    <li class="page-item page-indicator">
-                                        <a class="page-link" href="javascript:void(0)">
-                                            <i class="la la-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>		

@@ -50,7 +50,7 @@
                             <!--Membership ID-->
                             <div class="col-lg-12 py-3">
                                 <label for="membership_id">Membership ID</label>
-                                <input type="text" class="input @error('email') is-invalid @enderror" placeholder="Enter membership id" name="membership_id" value="{{ old('membership_id') }}" required autocomplete="membership_id" autofocus>
+                                <input type="text" class="input @error('membership_id') is-invalid @enderror" placeholder="Enter membership id" name="membership_id" value="{{ old('membership_id') }}" required autocomplete="membership_id" autofocus>
                                 @error('membership_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

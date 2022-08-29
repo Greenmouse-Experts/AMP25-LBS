@@ -29,8 +29,8 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-12">
-                            <div class="table-responsive ">
-                                <table class="table table-responsive-lg mb-4 dataTablesCard card-table text-black" id="example5">
+                            <div class="table-responsive">
+                                <table id="example" class="display compact table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>S/N</th>
@@ -51,11 +51,11 @@
                                     @foreach($members as $key => $member)
                                     <tbody>
                                         <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$member->membership_id}}</td>
+                                            <td class="text-black">{{$loop->iteration}}</td>
+                                            <td class="text-black">{{$member->membership_id}}</td>
                                             <td class="text-black">{{$member->title}}</td>
-                                            <td class="text-black">{{$member->name}}</td>
-                                            <td>{{$member->created_at->diffForHumans()}}</td>
+                                            <td class="text-black">{{$member->name}} </td>
+                                            <td class="text-black">{{$member->created_at->diffForHumans()}}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     <a data-toggle="modal" data-target="#send-message-{{$member->id}}" class="contact-icon mr-3"><i class="fa fa-paper-plane-o" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send Message"></i></a>
@@ -74,16 +74,16 @@
                                                                         @csrf
                                                                         <div class="form-group">
                                                                             <label for="subject">Subject</label>
-                                                                            <input type="text" class="form-control" id="subject" name="subject">
+                                                                            <input type="text" class="form-control" id="subject" style="border: 1px solid #1E33F2" name="subject">
                                                                         </div>
                                                                         <div class="form-group">
                                                                             <label for="message">Message</label>
-                                                                            <textarea type="text" class="form-control" id="message" rows="5" name="message"></textarea>
+                                                                            <textarea type="text" class="input" id="message" rows="5" name="message"></textarea>
                                                                         </div>
                                                                         <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
                                                                     </form>
                                                                 </div>
-                                                            </div>
+                                                            </div>  
                                                         </div>
                                                     </div>
                                                     <a data-toggle="modal" data-target="#view-member-{{$member->id}}" class="contact-icon mr-3"><i class="fa-fw fa fa-file-o" data-toggle="tooltip" data-placement="top" title="" data-original-title="View/Edit"></i></a>
@@ -159,26 +159,6 @@
                                     @endif
                                 </table>
                             </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <nav aria-label="Page navigation example ">
-                                <ul class="pagination pagination-circle mt-3">
-                                    <li class="page-item page-indicator">
-                                        <a class="page-link" href="javascript:void(0)">
-                                            <i class="la la-angle-left"></i></a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                                    <li class="page-item page-indicator">
-                                        <a class="page-link" href="javascript:void(0)">
-                                            <i class="la la-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>		

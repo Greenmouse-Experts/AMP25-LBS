@@ -27432,6 +27432,10 @@ table.dataTable.no-footer {
     color: #7e7e7e;
 }
 
+.dataTables_filter {
+    float: right
+}
+
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     color: #7e7e7e !important;
 }

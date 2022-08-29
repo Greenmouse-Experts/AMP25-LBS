@@ -23,14 +23,14 @@
                 <div class="container-fluid">
                     <div class="form-head d-flex flex-wrap mb-sm-4 mb-3 align-items-center">
                         <div class="mr-auto  d-lg-block mb-3">
-                            <h2 class="text-black font-w500 mb-0">View Payment Request</h2>
+                            <h2 class="text-black font-w500 mb-0">View Donations/Dues</h2>
                             
                         </div>	
                     </div>
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="table-responsive ">
-                                <table class="table table-responsive-lg mb-4 dataTablesCard card-table text-black" id="example5">
+                                <table class="table mb-4 dataTablesCard card-table text-black" id="example5">
                                     <thead>
                                         <tr>
                                             <th>S/N</th>
@@ -44,7 +44,7 @@
                                     @if($donation_dues->isEmpty())
                                     <tbody>
                                         <tr>
-                                            <td class="align-enter text-dark font-15" colspan="6">No Payment Request Added.</td>
+                                            <td class="align-enter text-dark font-15" colspan="6">No Donations/Dues Added.</td>
                                         </tr>
                                     </tbody>
                                     @else
@@ -86,26 +86,6 @@
                                     @endif
                                 </table>
                             </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <nav aria-label="Page navigation example ">
-                                <ul class="pagination pagination-circle mt-3">
-                                    <li class="page-item page-indicator">
-                                        <a class="page-link" href="javascript:void(0)">
-                                            <i class="la la-angle-left"></i></a>
-                                    </li>
-                                    <li class="page-item active"><a class="page-link" href="javascript:void(0)">1</a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="javascript:void(0)">4</a></li>
-                                    <li class="page-item page-indicator">
-                                        <a class="page-link" href="javascript:void(0)">
-                                            <i class="la la-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>		

@@ -31,14 +31,12 @@ class AdminController extends Controller
     {
         $total_members = User::where('user_type', 'Member')->get();
         $donation_dues = DonationDue::latest()->take(5)->get();
-        $dd = DonationDue::latest()->get();
-        $payment_histories = Payment::latest()->take(5)->get();
+        $payments = Payment::latest()->take(5)->get();
 
         return view('admin.dashboard',[
             'total_members' => $total_members,
             'donation_dues' => $donation_dues,
-            'dd' => $dd,
-            'payment_histories' => $payment_histories
+            'payments' => $payments
         ]);
     }
 

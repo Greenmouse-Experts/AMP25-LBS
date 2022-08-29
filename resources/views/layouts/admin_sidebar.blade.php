@@ -1,7 +1,7 @@
 <div class="deznav">
     <div class="deznav-scroll">
         <ul class="metismenu" id="menu">
-            <li><a class="ai-icon" href="index" aria-expanded="false">
+            <li><a class="ai-icon" href="{{route('admin.dashboard')}}" aria-expanded="false">
                     <i class="flaticon-025-dashboard"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
@@ -14,7 +14,6 @@
                 <ul aria-expanded="false">
                     <li><a href="{{route('admin.members')}}">Add a member</a></li>
                     <li><a href="{{route('admin.view.members')}}">View all members</a></li>
-                    <li><a href="Disable">Disable / suspend member</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
@@ -23,16 +22,16 @@
                 </a>
                 <ul aria-expanded="false">
                     <li><a href="{{route('admin.create.general.message')}}">Create a message / notification</a></li>
-                    <li><a href="{{route('admin.view.messages')}}}}">View replies from members</a></li>
+                    <li><a href="{{route('admin.view.messages')}}">View all messages</a></li>
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-picture"></i>
-                    <span class="nav-text">Payment</span>
+                    <span class="nav-text">Donation/Dues</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="{{route('admin.payment.request')}}">Create payment request</a></li>
-                    <li><a href="{{route('admin.view.payments.request')}}">View payment requests</a></li>
+                    <li><a href="{{route('admin.payment.request')}}">Create donation/dues request</a></li>
+                    <li><a href="{{route('admin.view.payments.request')}}">View donation/dues requests</a></li>
                     <li><a href="{{route('admin.view.payments')}}">View all payments from members</a></li>
                 </ul>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

@@ -17,6 +17,11 @@
                     <span class="nav-text">Messages / Notification</span>
                 </a>
             </li>
+            <li><a class="ai-icon" href="{{route('payment.history')}}" aria-expanded="false">
+                    <i class="flaticon-381-send"></i>
+                    <span class="nav-text">Payments</span>
+                </a>
+            </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
                     <i class="flaticon-381-settings"></i>
                     <span class="nav-text">Setting</span>

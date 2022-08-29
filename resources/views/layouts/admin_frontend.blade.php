@@ -68,7 +68,8 @@
 		<script src="{{URL::asset('dash/js/dashboard/dashboard-1.js')}}"></script>
 		<script src="{{URL::asset('dash/js/custom.min.js')}}"></script>
 		<script src="{{URL::asset('dash/js/deznav-init.js')}}"></script>
-		
+		<script src="{{URL::asset('vendor_components/datatable/datatables.min.js')}}"></script>
+		<script src="{{URL::asset('js/js/pages/data-table.js')}}"></script>
 		
 	</body>
 </html>

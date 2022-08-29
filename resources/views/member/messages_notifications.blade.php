@@ -85,25 +85,14 @@
                                     </div>
                                     @else
                                     @foreach($general_notifications as $key => $general_notification)
-                                    @if($general_notification->status == 'Read')
-                                    <div class="imagee" style="padding: 1rem; margin-bottom: 1rem;">
-                                        <img src="{{URL::asset('dash/images/avatar/1.png')}}" alt="">
-                                        <span>{{$general_notification->created_at->diffForHumans()}}</span> - {{$general_notification->from}}
-                                        <p style="font-weight: 500;">{{$general_notification->subject}}</p> 
-                                        <p>
-                                            {{$general_notification->message}}
-                                        </p>
-                                    </div>
-                                    @else
                                     <div class="imagee" style="background: #e9e3e35e; padding: 1rem; margin-bottom: 1rem;">
                                         <img src="{{URL::asset('dash/images/avatar/1.png')}}" alt="">
                                         <span>{{$general_notification->created_at->diffForHumans()}}</span> - {{$general_notification->from}}
-                                        <p style="font-weight: 500;">{{$general_notification->subject}}  <a class="contact-icon mr-3" style="float: right;" href="{{route('read.message', Crypt::encrypt($personal_notification->id))}}"><i class="fa fa-eye" aria-hidden="true"></i></a></p> 
+                                        <p style="font-weight: 500;">{{$general_notification->subject}}  <a class="contact-icon mr-3" style="float: right;" href="{{route('read.message', Crypt::encrypt($general_notification->id))}}"><i class="fa fa-eye" aria-hidden="true"></i></a></p> 
                                         <p>
                                             {{$general_notification->message}}
                                         </p>
                                     </div>
-                                    @endif
                                     @endforeach
                                     @endif
                                 </div>
