@@ -18,5 +18,8 @@ class Blog extends Model
         'title',
         'description',
         'image',
+        'comments',
+        'likes',
+        'views'
     ];
 }

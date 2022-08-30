@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [App\Http\Controllers\HomePageController::class, 'index']);
 Route::get('/about', [App\Http\Controllers\HomePageController::class, 'about']);
 Route::get('/contact', [App\Http\Controllers\HomePageController::class, 'contact']);
+Route::post('/contact-us', [App\Http\Controllers\HomePageController::class, 'contactConfirm']);
 Route::get('/membership', [App\Http\Controllers\HomePageController::class, 'membership']);
 Route::get('/blog', [App\Http\Controllers\HomePageController::class, 'blog']);
+Route::get('/blogPost/{id}', [App\Http\Controllers\HomePageController::class, 'blogPost'])->name('blogPost');
 Route::get('/terms_conditions', [App\Http\Controllers\HomePageController::class, 'terms_conditions']);
 Route::get('/privacy', [App\Http\Controllers\HomePageController::class, 'privacy']);
 

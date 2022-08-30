@@ -18,6 +18,9 @@ class CreateBlogsTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('image');
+            $table->string('comments')->nullable();
+            $table->string('likes')->nullable();
+            $table->string('views')->nullable();
             $table->timestamps();
         });
     }

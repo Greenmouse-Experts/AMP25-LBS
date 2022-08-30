@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class HomePageController extends Controller
 {
@@ -26,6 +28,30 @@ class HomePageController extends Controller
         return view('contact');
     }
 
+    public function contactConfirm(Request $request) {
+        //Validate Request
+        $this->validate($request, [
+            'phone' => 'required|numeric',
+        ]);
+
+        /** Store information to include in mail in $data as an array */
+        $data = array(
+            'name' => request()->name,
+            'email' => request()->email,
+            'phone' => request()->phone,
+            'subject' => request()->subject,
+            'description' => request()->message,
+            'created_at' => now(),
+            'admin' => 'admin@amp25lbs.com',
+        );
+        /** Send message to the admin */
+        Mail::send('emails.contact', $data, function ($m) use ($data) {
+            $m->to($data['admin'])->subject('Contact Form Notification');
+        });
+
+        return back()->with('success_report', 'Form Submitted Successfully');
+    }
+
     public function membership()
     {
         return view('membership');
@@ -33,7 +59,55 @@ class HomePageController extends Controller
 
     public function blog()
     {
-        return view('blog');
+        $blogs = Blog::latest()->get();
+
+        return view('blog', [
+            'blogs' => $blogs
+        ]);
+    }
+
+    public function blogPost($id)
+    {
+        // Share Whatsapp
+        $whatsapp = \Share::page(
+            url("/blogPost").'/'
+        )
+        ->whatsapp()
+        ->getRawLinks();
+        // dd(htmlspecialchars($whatsapp));
+
+        // Share Facebook
+        $facebook = \Share::page(
+            url("/blogPost").'/'
+        )
+        ->facebook()
+        ->getRawLinks();
+
+        // Share Twitter
+        $twitter = \Share::page(
+            url("/blogPost").'/'
+        )
+        ->twitter()
+        ->getRawLinks();
+
+        //Find Blog
+        $Finder = Crypt::decrypt($id);
+  
+        //Blog
+        $blog = Blog::find($Finder);
+        
+        $blog->views += 1;
+        $blog->save();
+
+        $blogs = Blog::latest()->where('id', '!=', $blog->id)->get();
+        
+        return view('view_blog', [
+            'blogs' => $blogs,
+            'blog' => $blog,
+            'whatsapp' => $whatsapp,
+            'facebook' => $facebook,
+            'twitter' => $twitter
+        ]);
     }
 
     public function terms_conditions()

@@ -11,66 +11,23 @@
     <div class="container">
         <!--First Row-->
         <div class="row">
+            @foreach($blogs as $blog)
             <div class="col-lg-3 py-3">
                 <div class="card">
-                    <img src="{{URL::asset('assets/images/about.jpg')}}" alt="blog image">
+                    <img src="/storage/blogs/{{$blog->image}}" alt="blog image">
                     <div class="card-body">
-                        <h5 class="card-title">Blog Title Here</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada purus sem, et iaculis odio mollis in. Vestibulum a urna mattis, facilisis dolor in, malesuada nisi.</p>
+                        <h5 class="card-title">{{$blog->title}}</h5>
+                        <p class="card-text">{{$blog->description}}</p>
                         <div class="btn-div">
-                            <a href="#">Read More</a>
+                            <a href="{{ route('blogPost', Crypt::encrypt($blog->id)) }}">Read More</a>
                         </div>
                     </div>
                     <div class="card-footer">
-                        <small><i class="far fa-clock"></i> 3 mins ago</small>
+                        <small><i class="far fa-clock"></i>{{$blog->created_at->diffForHumans()}}</small>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 py-3">
-                <div class="card">
-                    <img src="assets/images/about.jpg" alt="blog image">
-                    <div class="card-body">
-                        <h5 class="card-title">Blog Title Here</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada purus sem, et iaculis odio mollis in. Vestibulum a urna mattis, facilisis dolor in, malesuada nisi.</p>
-                        <div class="btn-div">
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <small><i class="far fa-clock"></i> 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 py-3">
-                <div class="card">
-                    <img src="assets/images/about.jpg" alt="blog image">
-                    <div class="card-body">
-                        <h5 class="card-title">Blog Title Here</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada purus sem, et iaculis odio mollis in. Vestibulum a urna mattis, facilisis dolor in, malesuada nisi.</p>
-                        <div class="btn-div">
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <small><i class="far fa-clock"></i> 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 py-3">
-                <div class="card">
-                    <img src="assets/images/about.jpg" alt="blog image">
-                    <div class="card-body">
-                        <h5 class="card-title">Blog Title Here</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque malesuada purus sem, et iaculis odio mollis in. Vestibulum a urna mattis, facilisis dolor in, malesuada nisi.</p>
-                        <div class="btn-div">
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <small><i class="far fa-clock"></i> 3 mins ago</small>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

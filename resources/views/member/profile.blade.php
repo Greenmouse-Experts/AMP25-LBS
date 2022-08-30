@@ -36,7 +36,7 @@
                                     <div class="pt-5">
                                         <div class="bg-img m-auto rounded-circle">
                                             @if(Auth::user()->avatar)
-                                            <img class="img-fluid border-primary" style="height: 100px; "src="/storage/avatars/{{Auth::user()->avatar}}" alt="Profile Picture">
+                                            <img class="img-fluid border-primary" style="height: 100px;" src="/storage/avatars/{{Auth::user()->avatar}}" alt="Profile Picture">
                                             @else
                                             <img src="{{URL::asset('dash/images/avatar/1.png')}}" class="img-fluid" alt="users-avatar">
                                             @endif

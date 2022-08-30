@@ -16,19 +16,21 @@
                         <div class="col-md-7 order-md-last d-flex align-items-stretch">
                             <div class="contact-wrap w-100 p-md-5 p-4">
                                 <h3 class="mb-4">Get in touch</h3>
-                                <form class="contactForm">
+                                @includeIf('layouts.error_template')
+                                <form class="contactForm" method="post" action="/contact-us">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-md-6 py-2">
-                                            <input type="text" required class="input" placeholder="Name">
+                                            <input type="text" required class="input" placeholder="Name" name="name">
                                         </div>
                                         <div class="col-md-6 py-2">
-                                            <input type="email" class="input" placeholder="Email">
+                                            <input type="email" class="input" placeholder="Email" required name="email">
                                         </div>
                                         <div class="col-md-6 py-2">
-                                            <input type="tel" required class="input" placeholder="Phone Number">
+                                            <input type="tel" required class="input" placeholder="Phone Number" required name="phone">
                                         </div>
                                         <div class="col-md-6 py-2">
-                                            <input type="text" required class="input" placeholder="Subject">
+                                            <input type="text" required class="input" placeholder="Subject" required name="subject">
                                         </div>
                                         <div class="col-md-12 py-2">
                                             <textarea name="message" required class="input" cols="30" rows="4" placeholder="Message"></textarea>
