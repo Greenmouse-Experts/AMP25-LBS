@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<title>{{config('app.name')}} - Admin Dashboard</title>
 		<!-- Favicon icon -->
-		<link rel="icon" type="image/png" href="{{URL::asset('assets/img/favicon.png')}}">
+		<link rel="shortcut icon" href="{{URL::asset('assets/images/favicon.png')}}" type="image/x-icon">
 		<link rel="stylesheet" href="vendor/chartist/css/chartist.min.css')}}">
 		<link href="{{URL::asset('dash/vendor/bootstrap-select/dist/css/bootstrap-select.min.css')}}" rel="stylesheet">
 		<link href="{{URL::asset('dash/vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet">
